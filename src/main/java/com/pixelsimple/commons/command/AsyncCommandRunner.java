@@ -143,6 +143,7 @@ class AsyncCommandRunner extends AbstractCommandRunner {
 				// TODO: Suppose we want to wait for the results, the calling thread can be made to wait (Not the thread that 
 				// is running the process, but the thread that called AsyncCommandRunner that will be made to wait.
 				resultHandler.waitFor();
+				commandResponse.setCommandExitValueObtained(resultHandler.getExitValue());
 				
 				LOG.debug("Waited so long with AsyncCommandCaller, final response is - {}", commandResponse);
 				

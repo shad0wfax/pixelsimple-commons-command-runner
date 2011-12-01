@@ -33,11 +33,11 @@ class BlockingCommandRunner extends AbstractCommandRunner {
 	 */
 	@Override
 	protected void executeCommand(Executor executor, CommandLine cmdLine) throws ExecuteException, IOException {
-		LOG.debug("Starting from BlockingCommandRunner - {}, {}", cmdLine.toString(), new Date());
+		LOG.debug("Starting from BlockingCommandRunner - {}", cmdLine.toString());
 
-		int exitValue = executor.execute(cmdLine);
+		this.commandResponse.setCommandExitValueObtained(executor.execute(cmdLine));
 		
-		LOG.debug("Submitted with BlockingCommandRunner - {}, {}", cmdLine.toString(), new Date());
+		LOG.debug("Submitted with BlockingCommandRunner - {}", cmdLine.toString());
 	}
 
 	/* (non-Javadoc)
@@ -45,7 +45,7 @@ class BlockingCommandRunner extends AbstractCommandRunner {
 	 */
 	@Override
 	protected void handleError(Throwable t) {
-		this.commandResponse.markFailure().gatherFailureResponse("Error running task AsyncCommandCaller for command line: " 
+		this.commandResponse.markFailure().gatherFailureResponse("Error running task BlockingCommandRunner for command line: " 
 				+ this.commandRequest.getCommand()).storeFailureCause(t);
 	}
 	

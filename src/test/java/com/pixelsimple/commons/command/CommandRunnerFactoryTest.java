@@ -34,23 +34,9 @@ public class CommandRunnerFactoryTest extends TestCase {
 		CommandRunner runner = CommandRunnerFactory.newAsyncCommandRunner(null);
 		Assert.assertNotNull(runner);
 		
-		runner = CommandRunnerFactory.newAsyncCommandRunner(anonAsyncHandler());
+		runner = CommandRunnerFactory.newAsyncCommandRunner(CommandUtilForTest.anonAsyncHandler());
 		Assert.assertNotNull(runner);
 	}
 	
-	private AsyncCallbackHandler anonAsyncHandler() {
-		return (new AsyncCallbackHandler() {
-			
-			@Override
-			public void onCommandFailed(CommandRequest commandRequest, CommandResponse commandResponse) {
-				LOG.debug("testNewAsyncCommandRunner::Command Failed");
-			}
-			
-			@Override
-			public void onCommandComplete(CommandRequest commandRequest, CommandResponse commandResponse) {
-				LOG.debug("testNewAsyncCommandRunner::Command Succeeded");
-			}
-		});
-	}
 
 }

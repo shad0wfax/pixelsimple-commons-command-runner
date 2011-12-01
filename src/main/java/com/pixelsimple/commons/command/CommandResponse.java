@@ -13,7 +13,22 @@ public class CommandResponse {
 	private Boolean failed = false;
 	private StringBuilder failureResponse;
 	private Throwable failureCause;
+	private int commandExitValueObtained;
 	
+	/**
+	 * @return the commandExitValueObtained
+	 */
+	public int getCommandExitValueObtained() {
+		return commandExitValueObtained;
+	}
+
+	/**
+	 * @param commandExitValueObtained the commandExitValueObtained to set
+	 */
+	public void setCommandExitValueObtained(int commandExitValueObtained) {
+		this.commandExitValueObtained = commandExitValueObtained;
+	}
+
 	public CommandResponse gatherSuccessResponse(String responsePart) {
 		if (this.successResponse == null) {
 			this.successResponse = new StringBuilder();
