@@ -29,7 +29,7 @@ public class CommandResponseHandlerTest extends TestCase {
 		CommandResponseHandler handler = new CommandResponseHandler(response);
 		handler.processLine("hello world", 1);
 		LOG.debug("Response form Command::{}", response.getSuccessResponse());
-		Assert.assertTrue(true);
+		Assert.assertEquals(response.getSuccessResponse().toString(), "hello world");
 	}
 
 }
