@@ -34,7 +34,7 @@ public class CommandRunnerFactoryTest extends TestCase {
 		CommandRunner runner = CommandRunnerFactory.newAsyncCommandRunner(null);
 		Assert.assertNotNull(runner);
 		
-		runner = CommandRunnerFactory.newAsyncCommandRunner(CommandUtilForTest.anonAsyncHandler());
+		runner = CommandRunnerFactory.newAsyncCommandRunner(CommandUtilForTest.anonAsyncHandler(null));
 		Assert.assertNotNull(runner);
 	}
 	

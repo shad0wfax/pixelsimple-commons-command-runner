@@ -34,8 +34,11 @@ class BlockingCommandRunner extends AbstractCommandRunner {
 	@Override
 	protected void executeCommand(Executor executor, CommandLine cmdLine) throws ExecuteException, IOException {
 		LOG.debug("Starting from BlockingCommandRunner - {}", cmdLine.toString());
+		
+		int exitVal = executor.execute(cmdLine);
+		LOG.debug("Exit value from running the command- {}", exitVal);
 
-		this.commandResponse.setCommandExitValueObtained(executor.execute(cmdLine));
+		this.commandResponse.setCommandExitValueObtained(exitVal);
 		
 		LOG.debug("Submitted with BlockingCommandRunner - {}", cmdLine.toString());
 	}

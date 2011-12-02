@@ -23,17 +23,23 @@ public class CommandUtilForTest extends TestCase {
 		Assert.assertTrue("Just a dummy test that needs to be there in this class for junit. DO NOT REMOVE.", true);
 	}
 
-	public static AsyncCallbackHandler anonAsyncHandler() {
+	public static AsyncCallbackHandler anonAsyncHandler(final String optionalCustomMessage) {
 		return (new AsyncCallbackHandler() {
 			
 			@Override
 			public void onCommandFailed(CommandRequest commandRequest, CommandResponse commandResponse) {
 				LOG.debug("testNewAsyncCommandRunner::Command Failed");
+				
+				// A hack to allow for testing - not to be done ever!! 
+				commandResponse.gatherFailureResponse(optionalCustomMessage);
 			}
 			
 			@Override
 			public void onCommandComplete(CommandRequest commandRequest, CommandResponse commandResponse) {
 				LOG.debug("testNewAsyncCommandRunner::Command Succeeded");
+
+				// A hack to allow for testing - not to be done ever!! 
+				commandResponse.gatherSuccessResponse(optionalCustomMessage);
 			}
 		});
 	}
@@ -54,12 +60,5 @@ public class CommandUtilForTest extends TestCase {
 		return request;
 	}
 	
-//	public static CommandResponse simpleCommandResponse() {
-//		CommandResponse response = new CommandResponse();
-//		response.gatherSuccessResponse("")
-//		
-//		return response;
-//	}
-
 
 }

@@ -5,7 +5,7 @@
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
 	<classpathentry kind="var" path="IVY_HOME/cache/junit/junit/jars/junit-3.8.1.jar"/>
-	<classpathentry kind="var" path="IVY_HOME/cache/org.apache.commons/commons-exec/jars/commons-exec-1.1.jar" sourcepath="/IVY_HOME/cache/org.apache.commons/commons-exec/sources/commons-exec-1.1-sources.jar"/>
+	<classpathentry kind="var" path="IVY_HOME/cache/org.apache.commons/commons-exec/jars/commons-exec-1.1.jar" sourcepath="/IVY_HOME/cache/org.apache.commons/commons-exec/jars/commons-exec-1.1-sources.jar"/>
 	<classpathentry kind="var" path="IVY_HOME/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.4.jar" sourcepath="/IVY_HOME/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.4.jar"/>
 	<classpathentry kind="var" path="IVY_HOME/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.0.jar"/>
 	<classpathentry kind="var" path="IVY_HOME/cache/ch.qos.logback/logback-core/jars/logback-core-1.0.0.jar"/>

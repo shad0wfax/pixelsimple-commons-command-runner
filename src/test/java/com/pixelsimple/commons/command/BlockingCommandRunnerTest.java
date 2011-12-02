@@ -58,4 +58,27 @@ public class BlockingCommandRunnerTest extends TestCase {
 		
 		// TODO: Add more meaningful assert - how to assert the output?
 	}
+
+	/**
+	 * Test method for {@link com.pixelsimple.commons.command.AbstractCommandRunner#runCommand(com.pixelsimple.commons.command.CommandRequest, com.pixelsimple.commons.command.CommandResponse)}.
+	 */
+	public void testRunCommandNullCommandRequestAndResponse() {
+		BlockingCommandRunner runner = new BlockingCommandRunner();
+
+		try {
+			runner.runCommand(null, new CommandResponse());
+			fail();
+		} catch (IllegalStateException e) {
+			Assert.assertTrue("Got the exception, good to go", true);
+		}
+		
+		try {
+			runner.runCommand(new CommandRequest(), null);
+			fail();
+		} catch (IllegalStateException e) {
+			Assert.assertTrue("Got the exception, good to go", true);
+		}
+		
+	}
+
 }
