@@ -17,6 +17,7 @@ import com.pixelsimple.commons.command.CommandResponse;
  */
 public class CommandResponseHandler extends LogOutputStream {
 	private static final Logger LOG = LoggerFactory.getLogger(CommandResponseHandler.class);
+	private static final String NEW_LINE_CHARACTER = System.getProperty("line.separator");
 
 	private CommandResponse response;
 
@@ -29,7 +30,7 @@ public class CommandResponseHandler extends LogOutputStream {
 	 */
 	@Override
 	protected void processLine(String line, int level) {
-		response.gatherSuccessResponse(line);
+		response.gatherSuccessResponse(line + NEW_LINE_CHARACTER);
 		LOG.debug("{}", line);
 	}
 

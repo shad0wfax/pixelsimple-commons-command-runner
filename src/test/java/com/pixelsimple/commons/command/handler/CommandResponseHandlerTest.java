@@ -19,6 +19,7 @@ import com.pixelsimple.commons.command.handler.CommandResponseHandler;
  */
 public class CommandResponseHandlerTest extends TestCase {
 	static final Logger LOG = LoggerFactory.getLogger(CommandResponseHandlerTest.class);
+	private static final String NEW_LINE_CHARACTER = System.getProperty("line.separator");
 
 	/**
 	 * Test method for {@link com.pixelsimple.commons.command.handler.CommandResponseHandler#processLine(java.lang.String, int)}.
@@ -30,7 +31,7 @@ public class CommandResponseHandlerTest extends TestCase {
 		handler.processLine("hello world", 1);
 		LOG.debug("Response form Command::{}", response.getSuccessResponse());
 		
-		Assert.assertEquals(response.getSuccessResponse().toString(), "hello world");
+		Assert.assertEquals(response.getSuccessResponse().toString(), "hello world" + NEW_LINE_CHARACTER);
 	}
 
 }
