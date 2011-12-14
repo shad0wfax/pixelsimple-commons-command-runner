@@ -13,6 +13,8 @@ import java.io.PipedOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pixelsimple.commons.command.CommandResponse;
+
 /**
  * A Stream reader using datainputstream that reads of a pipedinputstream. Not an elegant approach as the writer 
  * thread could die once done, and the reader thread receives an IOEXception with the write-end-dead message: 
@@ -23,8 +25,7 @@ import org.slf4j.LoggerFactory;
  * Usage: <code>
  *			PipedOutputStream output = new PipedOutputStream();
  *			PumpStreamHandler psh = new PumpStreamHandler(output);
- *			CommandStreamReader reader = new CommandStreamReader();
- *			reader.setPos(output);
+ *			CommandStreamReader reader = new CommandStreamReader(output, commandResponse);
  *			executor.setStreamHandler(psh);
  *			
  *			Thread readerThread = new Thread(reader);
@@ -38,6 +39,16 @@ public class CommandStreamReader implements Runnable {
 	static final Logger LOG = LoggerFactory.getLogger(CommandStreamReader.class);
 			
 	private PipedOutputStream pos;
+	private CommandResponse response;
+	
+	/**
+	 * 
+	 */
+	public CommandStreamReader(PipedOutputStream pos, CommandResponse response) {
+		this.pos = pos;
+		this.response = response;
+	}
+
 	
 //	private static final int READ_BUFFER_SIZE = PipedInputStream;
 
@@ -60,6 +71,7 @@ public class CommandStreamReader implements Runnable {
 				while ((line = br.readLine()) != null)
 				{
 					sb.append(line);
+					response.gatherSuccessResponseOutputStream(line + "\n");
 					LOG.debug("{}", line);
 				}
 				
@@ -83,13 +95,4 @@ public class CommandStreamReader implements Runnable {
 				
 		}
 	}
-
-	/**
-	 * @param pos the pos to set
-	 */
-	public void setPos(PipedOutputStream pos) {
-		this.pos = pos;
-	}
-
-
 }

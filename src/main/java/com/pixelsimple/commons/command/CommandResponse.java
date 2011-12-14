@@ -9,7 +9,8 @@ package com.pixelsimple.commons.command;
  * Nov 17, 2011
  */
 public class CommandResponse {
-	private StringBuilder successResponse;
+	private StringBuilder successResponseOutputStream;
+	private StringBuilder successResponseErrorStream;
 	private Boolean failed = false;
 	private StringBuilder failureResponse;
 	private Throwable failureCause;
@@ -29,11 +30,19 @@ public class CommandResponse {
 		this.commandExitValueObtained = commandExitValueObtained;
 	}
 
-	public CommandResponse gatherSuccessResponse(String responsePart) {
-		if (this.successResponse == null) {
-			this.successResponse = new StringBuilder();
+	public CommandResponse gatherSuccessResponseOutputStream(String responsePart) {
+		if (this.successResponseOutputStream == null) {
+			this.successResponseOutputStream = new StringBuilder();
 		}
-		this.successResponse.append(responsePart);
+		this.successResponseOutputStream.append(responsePart);
+		return this;
+	}
+	
+	public CommandResponse gatherSuccessResponseErrorStream(String responsePart) {
+		if (this.successResponseErrorStream == null) {
+			this.successResponseErrorStream = new StringBuilder();
+		}
+		this.successResponseErrorStream.append(responsePart);
 		return this;
 	}
 
@@ -62,11 +71,19 @@ public class CommandResponse {
 	}
 
 	/**
-	 * Can be null if no successResponse has been gathered.
-	 * @return the successResponse
+	 * Can be null if no successResponseOutputStream has been gathered.
+	 * @return the successResponseOutputStream
 	 */
-	public StringBuilder getSuccessResponse() {
-		return this.successResponse;
+	public StringBuilder getSuccessResponseOutputStream() {
+		return this.successResponseOutputStream;
+	}
+	
+	/**
+	 * Can be null if no successResponseErrorStream has been gathered.
+	 * @return the successResponseErrorStream
+	 */
+	public StringBuilder getSuccessResponseErrorStream() {
+		return this.successResponseErrorStream;
 	}
 	
 	/**
@@ -84,13 +101,15 @@ public class CommandResponse {
 	}
 
 	/**
-	 * Can be expensive if the command has a large successResponse output. Use wisely in logging.
+	 * Can be expensive if the command has a large successResponseOutputStream/successResponseErrorStream output. 
+	 * Use wisely in logging.
 	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return (successResponse != null ? getSuccessResponse().toString() : "success::null") 
-				+ "\n" + (failureResponse != null ? getFailureResponse().toString() : "failure:null");
+		return (successResponseOutputStream != null ? getSuccessResponseOutputStream().toString() : "successOutputStream::null")
+			+ "\n" + (successResponseErrorStream != null ? getSuccessResponseErrorStream().toString() : "successErrorStream::null")
+			+ "\n" + (failureResponse != null ? getFailureResponse().toString() : "failure::null");
 	}
 
 }

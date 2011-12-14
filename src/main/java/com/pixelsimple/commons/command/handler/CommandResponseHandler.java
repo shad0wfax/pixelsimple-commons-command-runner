@@ -20,9 +20,11 @@ public class CommandResponseHandler extends LogOutputStream {
 	private static final String NEW_LINE_CHARACTER = System.getProperty("line.separator");
 
 	private CommandResponse response;
+	private boolean useErrorStream;
 
-	public CommandResponseHandler(CommandResponse response) {
+	public CommandResponseHandler(CommandResponse response, boolean useErrorStream) {
 		this.response = response;
+		this.useErrorStream = useErrorStream;
 	}
 
 	/* (non-Javadoc)
@@ -30,8 +32,15 @@ public class CommandResponseHandler extends LogOutputStream {
 	 */
 	@Override
 	protected void processLine(String line, int level) {
-		response.gatherSuccessResponse(line + NEW_LINE_CHARACTER);
-		LOG.debug("{}", line);
+		LOG.debug("useErrorStream::{}==>{}", this.useErrorStream, line);
+		
+		if (this.useErrorStream) {
+			response.gatherSuccessResponseErrorStream(line + NEW_LINE_CHARACTER);
+		} else {
+			
+			response.gatherSuccessResponseOutputStream(line + NEW_LINE_CHARACTER);
+		}
+			
 	}
 
 }

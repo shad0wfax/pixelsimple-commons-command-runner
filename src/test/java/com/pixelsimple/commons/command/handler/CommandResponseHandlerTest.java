@@ -24,14 +24,27 @@ public class CommandResponseHandlerTest extends TestCase {
 	/**
 	 * Test method for {@link com.pixelsimple.commons.command.handler.CommandResponseHandler#processLine(java.lang.String, int)}.
 	 */
-	public void testProcessLine() {
+	public void testProcessLineOutputStream() {
 		// Test that logging works!! Thats all
 		CommandResponse response = new CommandResponse();	
-		CommandResponseHandler handler = new CommandResponseHandler(response);
+		CommandResponseHandler handler = new CommandResponseHandler(response, false);
 		handler.processLine("hello world", 1);
-		LOG.debug("Response form Command::{}", response.getSuccessResponse());
+		LOG.debug("Response form Command::{}", response.getSuccessResponseOutputStream());
 		
-		Assert.assertEquals(response.getSuccessResponse().toString(), "hello world" + NEW_LINE_CHARACTER);
+		Assert.assertEquals(response.getSuccessResponseOutputStream().toString(), "hello world" + NEW_LINE_CHARACTER);
+	}
+
+	/**
+	 * Test method for {@link com.pixelsimple.commons.command.handler.CommandResponseHandler#processLine(java.lang.String, int)}.
+	 */
+	public void testProcessLineErrorStream() {
+		// Test that logging works!! Thats all
+		CommandResponse response = new CommandResponse();	
+		CommandResponseHandler handler = new CommandResponseHandler(response, true);
+		handler.processLine("hello world", 1);
+		LOG.debug("Response form Command::{}", response.getSuccessResponseErrorStream());
+		
+		Assert.assertEquals(response.getSuccessResponseErrorStream().toString(), "hello world" + NEW_LINE_CHARACTER);
 	}
 
 }

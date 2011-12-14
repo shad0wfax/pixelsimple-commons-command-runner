@@ -29,7 +29,7 @@ public class BlockingCommandRunnerTest extends TestCase {
 		// TODO: This will block - how to test the blockage???
 		runner.runCommand(request, response);
 		
-		Assert.assertNotNull(response.getSuccessResponse());
+		Assert.assertNotNull(response.getSuccessResponseOutputStream());
 		Assert.assertNull(response.getFailureResponse());
 		Assert.assertEquals(response.getCommandExitValueObtained(), request.getCommandExitValue());
 		Assert.assertEquals(response.hasCommandFailed(), Boolean.FALSE);

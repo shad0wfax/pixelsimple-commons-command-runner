@@ -3,10 +3,10 @@
  */
 package com.pixelsimple.commons.command;
 
-import org.apache.commons.exec.ExecuteException;
-
 import junit.framework.Assert;
 import junit.framework.TestCase;
+
+import org.apache.commons.exec.ExecuteException;
 
 /**
  *
@@ -30,7 +30,7 @@ public class AsyncCommandRunnerTest extends TestCase {
 		// thread finishes. 
 		Thread.sleep(2000);
 		
-		Assert.assertNotNull(response.getSuccessResponse());
+		Assert.assertNotNull(response.getSuccessResponseOutputStream());
 		Assert.assertNull(response.getFailureResponse());
 		Assert.assertEquals(response.getCommandExitValueObtained(), request.getCommandExitValue());
 		Assert.assertEquals(response.hasCommandFailed(), Boolean.FALSE);
@@ -54,11 +54,11 @@ public class AsyncCommandRunnerTest extends TestCase {
 		// thread finishes. 
 		Thread.sleep(2000);
 		
-		Assert.assertNotNull(response.getSuccessResponse());
+		Assert.assertNotNull(response.getSuccessResponseOutputStream());
 		Assert.assertNull(response.getFailureResponse());
 		Assert.assertEquals(response.getCommandExitValueObtained(), request.getCommandExitValue());
 		Assert.assertEquals(response.hasCommandFailed(), Boolean.FALSE);
-		Assert.assertTrue(response.getSuccessResponse().indexOf(msg) != -1);
+		Assert.assertTrue(response.getSuccessResponseOutputStream().indexOf(msg) != -1);
 		
 		// TODO: Add more meaningful assert - how to assert the output in async mode?
 	}

@@ -39,7 +39,7 @@ public class CommandUtilForTest extends TestCase {
 				LOG.debug("testNewAsyncCommandRunner::Command Succeeded");
 
 				// A hack to allow for testing - not to be done ever!! 
-				commandResponse.gatherSuccessResponse(optionalCustomMessage);
+				commandResponse.gatherSuccessResponseOutputStream(optionalCustomMessage);
 			}
 		});
 	}

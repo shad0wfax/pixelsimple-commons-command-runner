@@ -4,6 +4,7 @@
 package com.pixelsimple.commons.command;
 
 import java.io.IOException;
+import java.io.PipedOutputStream;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
@@ -13,6 +14,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 import org.slf4j.Logger;
 
 import com.pixelsimple.commons.command.handler.CommandResponseHandler;
+import com.pixelsimple.commons.command.handler.CommandStreamReader;
 
 /**
  *
@@ -39,7 +41,19 @@ abstract class AbstractCommandRunner implements CommandRunner {
 		executor.setExitValue(commandRequest.getCommandExitValue());
 		
 		try {
-			PumpStreamHandler psh = new PumpStreamHandler(new CommandResponseHandler(commandResponse));
+			/*
+			 * Deprecated approach - Use the CommandResponseHandler instead
+			PipedOutputStream output = new PipedOutputStream();
+			PumpStreamHandler psh = new PumpStreamHandler(output);
+			CommandStreamReader reader = new CommandStreamReader(output, commandResponse);
+			executor.setStreamHandler(psh);
+			
+			Thread readerThread = new Thread(reader);
+			readerThread.start();
+			*/
+			
+			PumpStreamHandler psh = new PumpStreamHandler(new CommandResponseHandler(commandResponse, false), 
+					new CommandResponseHandler(commandResponse, true));
 			executor.setStreamHandler(psh);
 			this.executeCommand(executor, cmdLine);
 			
