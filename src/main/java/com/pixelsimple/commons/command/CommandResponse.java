@@ -107,9 +107,9 @@ public class CommandResponse {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return (successResponseOutputStream != null ? getSuccessResponseOutputStream().toString() : "successOutputStream::null")
-			+ "\n" + (successResponseErrorStream != null ? getSuccessResponseErrorStream().toString() : "successErrorStream::null")
-			+ "\n" + (failureResponse != null ? getFailureResponse().toString() : "failure::null");
+		return "successOutputStream::" + (successResponseOutputStream != null ? getSuccessResponseOutputStream().toString() : "null")
+			+ "\nsuccessErrorStream::" + (successResponseErrorStream != null ? getSuccessResponseErrorStream().toString() : "null")
+			+ "\nfailure::" + (failureResponse != null ? getFailureResponse().toString() : "null");
 	}
 
 }
