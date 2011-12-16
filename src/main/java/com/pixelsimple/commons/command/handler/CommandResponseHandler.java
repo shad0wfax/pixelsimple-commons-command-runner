@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pixelsimple.commons.command.CommandResponse;
+import com.pixelsimple.commons.util.CommonsUtil;
 
 /**
  *
@@ -17,7 +18,6 @@ import com.pixelsimple.commons.command.CommandResponse;
  */
 public class CommandResponseHandler extends LogOutputStream {
 	private static final Logger LOG = LoggerFactory.getLogger(CommandResponseHandler.class);
-	private static final String NEW_LINE_CHARACTER = System.getProperty("line.separator");
 
 	private CommandResponse response;
 	private boolean useErrorStream;
@@ -35,10 +35,10 @@ public class CommandResponseHandler extends LogOutputStream {
 		LOG.debug("useErrorStream::{}==>{}", this.useErrorStream, line);
 		
 		if (this.useErrorStream) {
-			response.gatherSuccessResponseErrorStream(line + NEW_LINE_CHARACTER);
+			response.gatherSuccessResponseErrorStream(line + CommonsUtil.NEW_LINE_CHARACTER);
 		} else {
 			
-			response.gatherSuccessResponseOutputStream(line + NEW_LINE_CHARACTER);
+			response.gatherSuccessResponseOutputStream(line + CommonsUtil.NEW_LINE_CHARACTER);
 		}
 			
 	}

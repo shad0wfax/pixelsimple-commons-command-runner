@@ -10,5 +10,6 @@
 	<classpathentry kind="var" path="IVY_HOME/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.0.jar"/>
 	<classpathentry kind="var" path="IVY_HOME/cache/ch.qos.logback/logback-core/jars/logback-core-1.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/commons-util"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
