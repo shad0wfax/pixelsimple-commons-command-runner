@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pixelsimple.commons.command.CommandResponse;
-import com.pixelsimple.commons.util.CommonsUtil;
+import com.pixelsimple.commons.util.CommonsUtils;
 
 /**
  *
@@ -35,10 +35,10 @@ public class CommandResponseHandler extends LogOutputStream {
 		LOG.debug("useErrorStream::{}==>{}", this.useErrorStream, line);
 		
 		if (this.useErrorStream) {
-			response.gatherSuccessResponseErrorStream(line + CommonsUtil.NEW_LINE_CHARACTER);
+			response.gatherSuccessResponseErrorStream(line + CommonsUtils.NEW_LINE_CHARACTER);
 		} else {
 			
-			response.gatherSuccessResponseOutputStream(line + CommonsUtil.NEW_LINE_CHARACTER);
+			response.gatherSuccessResponseOutputStream(line + CommonsUtils.NEW_LINE_CHARACTER);
 		}
 			
 	}
