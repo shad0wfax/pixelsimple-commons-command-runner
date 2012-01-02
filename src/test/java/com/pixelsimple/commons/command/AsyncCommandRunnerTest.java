@@ -28,7 +28,7 @@ public class AsyncCommandRunnerTest extends TestCase {
 		runner.runCommand(request, response);
 		// Wait 2s to see if the output is gathered. Else tweak this number. Junit exits unfortunately before other 
 		// thread finishes. 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		Assert.assertNotNull(response.getSuccessResponseOutputStream());
 		Assert.assertNull(response.getFailureResponse());
