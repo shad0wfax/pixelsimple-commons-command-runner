@@ -1,3 +1,6 @@
 Commons Command Runner  Repository
 -----------------------------------
 This is the command runner repository. Contains the commons-command-runner project and belongs to the commons area of pixelsimple.
+This module offes two modes of running a command - 1) Blocking (synchronous) mode and 2) Aynchronous (non-blocking) mode. 
+
+The general rule of thumb is - for short/faster commands, blocking mode can be used, for all long/time consuming commands it is mandatory to use the async mode. 
