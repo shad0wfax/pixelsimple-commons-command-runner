@@ -8,7 +8,7 @@ package com.pixelsimple.commons.command;
  * @author Akshay Sharma
  * Nov 17, 2011
  */
-public class CommandRequest {
+public final class CommandRequest {
 	private String command;
 	private int commandExitValue = 0;
 	

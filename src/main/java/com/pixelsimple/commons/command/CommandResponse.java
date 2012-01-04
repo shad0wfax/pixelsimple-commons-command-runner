@@ -8,7 +8,7 @@ package com.pixelsimple.commons.command;
  * @author Akshay Sharma
  * Nov 17, 2011
  */
-public class CommandResponse {
+public final class CommandResponse {
 	private StringBuilder successResponseOutputStream;
 	private StringBuilder successResponseErrorStream;
 	private Boolean failed = false;
