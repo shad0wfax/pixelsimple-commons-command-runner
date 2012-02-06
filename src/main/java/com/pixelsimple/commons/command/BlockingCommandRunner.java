@@ -4,7 +4,6 @@
 package com.pixelsimple.commons.command;
 
 import java.io.IOException;
-import java.util.Date;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.ExecuteException;

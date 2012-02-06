@@ -3,13 +3,11 @@
  */
 package com.pixelsimple.commons.command;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.pixelsimple.commons.command.callback.AsyncCallbackHandler;
-
 import junit.framework.Assert;
 import junit.framework.TestCase;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *

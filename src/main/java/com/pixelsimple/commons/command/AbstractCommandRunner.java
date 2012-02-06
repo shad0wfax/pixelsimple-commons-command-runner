@@ -4,7 +4,6 @@
 package com.pixelsimple.commons.command;
 
 import java.io.IOException;
-import java.io.PipedOutputStream;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
@@ -14,7 +13,6 @@ import org.apache.commons.exec.PumpStreamHandler;
 import org.slf4j.Logger;
 
 import com.pixelsimple.commons.command.handler.CommandResponseHandler;
-import com.pixelsimple.commons.command.handler.CommandStreamReader;
 
 /**
  *
