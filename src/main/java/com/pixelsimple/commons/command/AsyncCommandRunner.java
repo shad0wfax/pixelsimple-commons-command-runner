@@ -118,7 +118,7 @@ class AsyncCommandRunner extends AbstractCommandRunner {
 	@Override
 	protected void handleError(Throwable t) {
 		this.commandResponse.markFailure().gatherFailureResponse("Error running task AsyncCommandCaller for command line: " 
-			+ this.commandRequest.getCommand()).storeFailureCause(t);
+			+ this.commandRequest.getCommandAsString()).storeFailureCause(t);
 			asyncCallbackHandler.onCommandFailed(this.commandRequest, this.commandResponse);
 	}
 	

@@ -25,7 +25,7 @@ public class DefaultAsyncCallbackHandler implements AsyncCallbackHandler {
 	 */
 	@Override
 	public void onCommandComplete(CommandRequest commandRequest, CommandResponse commandResponse) {
-		LOG.debug("Completed running the command - {} \n the output of the command \n:{}", commandRequest.getCommand(), 
+		LOG.debug("Completed running the command - {} \n the output of the command \n:{}", commandRequest.getCommandAsString(), 
 				commandResponse);		
 	}
 
@@ -34,7 +34,7 @@ public class DefaultAsyncCallbackHandler implements AsyncCallbackHandler {
 	 */
 	@Override
 	public void onCommandFailed(CommandRequest commandRequest, CommandResponse commandResponse) {
-		LOG.debug("Failed running the command - {} \n the output of the command \n:{}", commandRequest.getCommand(), 
+		LOG.debug("Failed running the command - {} \n the output of the command \n:{}", commandRequest.getCommandAsString(), 
 				commandResponse);
 		LOG.debug("Failure cause:\n {}", commandResponse.getFailureCause());
 	}

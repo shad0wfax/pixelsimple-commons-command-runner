@@ -37,6 +37,26 @@ public class BlockingCommandRunnerTest extends TestCase {
 		// TODO: Add more meaningful assert - how to assert the output?
 	}
 
+	/**
+	 * Test method for {@link com.pixelsimple.commons.command.AbstractCommandRunner#runCommand(com.pixelsimple.commons.command.CommandRequest, com.pixelsimple.commons.command.CommandResponse)}.
+	 */
+	public void testAddArguments() {
+		CommandRequest request = CommandUtilForTest.simpleCommand();
+		Assert.assertEquals(request.getCommandAsString(), "ls -l");
+		
+		request.addArguments("a");
+		Assert.assertEquals(request.getCommandAsString(), "ls -l a");
+		
+		String spaceSepartedComment = "this has space";		
+		request.addArguments(spaceSepartedComment);
+		Assert.assertEquals(request.getCommandAsString(), "ls -l a \"this has space\"");
+
+		request = CommandUtilForTest.simpleCommand();
+		Assert.assertEquals(request.getCommandAsString(), "ls -l");
+		request.addArguments(null);
+		Assert.assertEquals(request.getCommandAsString(), "ls -l");
+	}
+
 
 	/**
 	 * Test method for {@link com.pixelsimple.commons.command.AbstractCommandRunner#runCommand(com.pixelsimple.commons.command.CommandRequest, com.pixelsimple.commons.command.CommandResponse)}.

@@ -48,7 +48,7 @@ class BlockingCommandRunner extends AbstractCommandRunner {
 	@Override
 	protected void handleError(Throwable t) {
 		this.commandResponse.markFailure().gatherFailureResponse("Error running task BlockingCommandRunner for command line: " 
-				+ this.commandRequest.getCommand()).storeFailureCause(t);
+				+ this.commandRequest.getCommandAsString()).storeFailureCause(t);
 	}
 	
 }

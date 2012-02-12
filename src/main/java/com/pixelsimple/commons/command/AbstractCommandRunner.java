@@ -34,7 +34,7 @@ abstract class AbstractCommandRunner implements CommandRunner {
 		this.commandResponse = commandResponse;
 		this.commandRequest = commandRequest;
 		
-		CommandLine cmdLine = CommandLine.parse(commandRequest.getCommand());
+		CommandLine cmdLine = commandRequest.getCommandLine();
 		Executor executor = new DefaultExecutor();
 		executor.setExitValue(commandRequest.getCommandExitValue());
 		
@@ -59,11 +59,11 @@ abstract class AbstractCommandRunner implements CommandRunner {
 		} catch (ExecuteException e) {
 			// TODO: decide if we need to retry? Or if the command is bad. Etc. Is this a recoverable error?
 			this.handleError(e);
-			LOG.error("Error occurred executing the command - [{}] ", commandRequest.getCommand(), e);
+			LOG.error("Error occurred executing the command - [{}] ", commandRequest.getCommandAsString(), e);
 		} catch (IOException e) {
 			// Is this recoverable? What to do? Decide
 			this.handleError(e);
-			LOG.error("IO Error occurred executing the command - [{}] ", commandRequest.getCommand(), e);
+			LOG.error("IO Error occurred executing the command - [{}] ", commandRequest.getCommandAsString(), e);
 		}		
 			
 	}
