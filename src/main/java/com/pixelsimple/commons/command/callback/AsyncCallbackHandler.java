@@ -13,6 +13,8 @@ import com.pixelsimple.commons.command.CommandResponse;
  */
 public interface AsyncCallbackHandler {
 	
+	void onCommandStart(CommandRequest commandRequest, CommandResponse commandResponse);
+	
 	void onCommandComplete(CommandRequest commandRequest, CommandResponse commandResponse);
 	
 	void onCommandFailed(CommandRequest commandRequest, CommandResponse commandResponse);

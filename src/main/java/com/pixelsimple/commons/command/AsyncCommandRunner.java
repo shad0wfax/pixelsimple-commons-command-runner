@@ -80,6 +80,8 @@ class AsyncCommandRunner extends AbstractCommandRunner {
 			try {
 				LOG.debug("Starting from AsyncCommandCaller - {}", cmdLine.toString());
 				
+				asyncCallbackHandler.onCommandStart(commandRequest, commandResponse);
+				
 				DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 				this.executor.execute(cmdLine, resultHandler);
 				

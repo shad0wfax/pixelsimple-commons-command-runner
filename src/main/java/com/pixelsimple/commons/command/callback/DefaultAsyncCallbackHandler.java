@@ -39,4 +39,13 @@ public class DefaultAsyncCallbackHandler implements AsyncCallbackHandler {
 		LOG.debug("Failure cause:\n {}", commandResponse.getFailureCause());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pixelsimple.commons.command.callback.AsyncCallbackHandler#onCommandStart(com.pixelsimple.commons.command.CommandRequest, com.pixelsimple.commons.command.CommandResponse)
+	 */
+	@Override
+	public void onCommandStart(CommandRequest commandRequest, CommandResponse commandResponse) {
+		LOG.debug("Starting the command - {} \n the output of the command \n:{}", commandRequest.getCommandAsString(), 
+				commandResponse);		
+	}
+
 }

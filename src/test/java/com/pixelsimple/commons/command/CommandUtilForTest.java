@@ -41,6 +41,11 @@ public class CommandUtilForTest extends TestCase {
 				// A hack to allow for testing - not to be done ever!! 
 				commandResponse.gatherSuccessResponseOutputStream(optionalCustomMessage);
 			}
+
+			@Override
+			public void onCommandStart(CommandRequest commandRequest, CommandResponse commandResponse) {
+				LOG.debug("testNewAsyncCommandRunner::Command Started - {}", commandRequest.getCommandAsString());
+			}
 		});
 	}
 	
