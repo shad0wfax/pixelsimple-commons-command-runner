@@ -15,14 +15,27 @@ public final class CommandRequest {
 	private int commandExitValue = 0;
 	
 	public CommandRequest addCommand(String command, int commandExitValue) {
+		// quote the argument if there is a space in it
+		if (command != null && command.indexOf(" ") != -1) {
+			command = "\"" + command + "\"";
+		}
 		this.commandLine = CommandLine.parse(command);
+	
 		this.commandExitValue = commandExitValue;
 		return this;
 	}
 	
-	public CommandRequest addArguments(String argument) {
-		if (argument != null)
-			this.commandLine.addArgument(argument);
+	public CommandRequest addArgument(String argument) {
+		if (argument != null) {
+			
+			// Looks like it should not be done if we pass false to handleQuote.
+//			// quote the argument if there is a space in it
+//			if (argument.indexOf(" ") != -1) {
+//				argument = "\"" + argument + "\"";
+//			}
+			
+			this.commandLine.addArgument(argument, false);
+		}
 		return this;
 	}
 	

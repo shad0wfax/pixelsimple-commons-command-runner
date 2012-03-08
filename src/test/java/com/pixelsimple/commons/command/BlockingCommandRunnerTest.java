@@ -7,8 +7,11 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.apache.commons.exec.ExecuteException;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.pixelsimple.commons.test.util.TestUtil;
 
 /**
  *
@@ -44,16 +47,16 @@ public class BlockingCommandRunnerTest extends TestCase {
 		CommandRequest request = CommandUtilForTest.simpleCommand();
 		Assert.assertEquals(request.getCommandAsString(), "ls -l");
 		
-		request.addArguments("a");
+		request.addArgument("a");
 		Assert.assertEquals(request.getCommandAsString(), "ls -l a");
 		
 		String spaceSepartedComment = "this has space";		
-		request.addArguments(spaceSepartedComment);
-		Assert.assertEquals(request.getCommandAsString(), "ls -l a \"this has space\"");
+		request.addArgument(spaceSepartedComment);
+		Assert.assertEquals(request.getCommandAsString(), "ls -l a this has space");
 
 		request = CommandUtilForTest.simpleCommand();
 		Assert.assertEquals(request.getCommandAsString(), "ls -l");
-		request.addArguments(null);
+		request.addArgument(null);
 		Assert.assertEquals(request.getCommandAsString(), "ls -l");
 	}
 
@@ -101,4 +104,35 @@ public class BlockingCommandRunnerTest extends TestCase {
 		
 	}
 
+	
+	@Test
+	public void testRunCommandWithSpaceSuccess() {
+		String mediaPath = TestUtil.getTestConfig().get(TestUtil.TEST_ARTIFACT_DIR_CONFIG) + "with space in folder name/video1.mov";
+		
+		if (TestUtil.fileExists(mediaPath)) {
+			BlockingCommandRunner runner = new BlockingCommandRunner();
+			CommandResponse response = new CommandResponse();
+			CommandRequest request = new CommandRequest();
+			
+			request.addCommand( TestUtil.getTestConfig().get(TestUtil.FFPROBE_EXECUTABLE_CONFIG), 0);
+			request.addArgument(mediaPath);
+			request.addArgument("-show_format");
+			request.addArgument("-show_streams");
+			request.addArgument("-sexagesimal");
+			
+			runner.runCommand(request, response);
+			
+			Assert.assertNotNull(response.getSuccessResponseOutputStream());
+			Assert.assertNull(response.getFailureResponse());
+			Assert.assertEquals(response.getCommandExitValueObtained(), request.getCommandExitValue());
+			Assert.assertEquals(response.hasCommandFailed(), Boolean.FALSE);
+		} else {
+			LOG.error("testRunCommandWithSpaceSuccess::Did not find the media to test with, logging and passing the test.");
+			Assert.assertTrue(true);
+		}
+	}
+	
+	///Users/srivatsasharma/dev/pixelsimple/ffprobe/32_bit/0.7_beta2/ffprobe "/Users/srivatsasharma/Projects/LyndaTraining/Videos/Dvd1/Android App Development with Java Essential Training/1. Getting Started/adt.mov" -show_format -show_streams -sexagesimal
+	
+	
 }

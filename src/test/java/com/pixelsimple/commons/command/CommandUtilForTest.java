@@ -51,7 +51,8 @@ public class CommandUtilForTest extends TestCase {
 	
 	public static CommandRequest simpleCommand() {
 		CommandRequest request = new CommandRequest();
-		request.addCommand("ls -l", 0);
+		request.addCommand("ls", 0);
+		request.addArgument("-l");
 		return request;
 	}
 	
@@ -61,7 +62,8 @@ public class CommandUtilForTest extends TestCase {
 	 */
 	public static CommandRequest simpleCommandWithWrongExitValue() {
 		CommandRequest request = new CommandRequest();
-		request.addCommand("ls -l", 1);
+		request.addCommand("ls", 1);
+		request.addArgument("-l");
 		return request;
 	}
 	
