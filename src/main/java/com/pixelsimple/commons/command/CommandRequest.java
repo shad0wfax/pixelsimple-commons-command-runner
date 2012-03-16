@@ -40,6 +40,30 @@ public final class CommandRequest {
 	}
 	
 	/**
+	 * Can be expensive on repeated invokes. Since commandLine does not give a good way to poll this. 
+	 * @param argument
+	 * @return
+	 */
+	public boolean doesArgumentExist(String argument, boolean ignoreCase) {
+		String [] args = this.commandLine.getArguments();
+		
+		if (args == null || args.length == 0)
+			return false;
+		
+		boolean exists = false;
+		
+		for (String s : args) {
+			//if (s.equals(anObject))
+			exists = (ignoreCase) ? s.equalsIgnoreCase(argument)	: s.equals(argument);
+			
+			if (exists)
+				break;
+		}
+		
+		return exists;
+	}
+	
+	/**
 	 * @return the command
 	 */
 	public CommandLine getCommandLine() {

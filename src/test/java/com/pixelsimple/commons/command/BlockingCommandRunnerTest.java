@@ -58,6 +58,16 @@ public class BlockingCommandRunnerTest extends TestCase {
 		Assert.assertEquals(request.getCommandAsString(), "ls -l");
 		request.addArgument(null);
 		Assert.assertEquals(request.getCommandAsString(), "ls -l");
+		
+		request = CommandUtilForTest.simpleCommand();
+		request.addArgument("a");
+		spaceSepartedComment = "this has space";		
+		request.addArgument(spaceSepartedComment);
+		Assert.assertEquals(request.doesArgumentExist("a", false), true);
+		Assert.assertEquals(request.doesArgumentExist("A", true), true);
+		Assert.assertEquals(request.doesArgumentExist("A", false), false);
+		Assert.assertEquals(request.doesArgumentExist("this has SPACE", true), true);
+		Assert.assertEquals(request.doesArgumentExist("this", true), false);
 	}
 
 
