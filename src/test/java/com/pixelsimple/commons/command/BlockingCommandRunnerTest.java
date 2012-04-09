@@ -43,33 +43,21 @@ public class BlockingCommandRunnerTest extends TestCase {
 	/**
 	 * Test method for {@link com.pixelsimple.commons.command.AbstractCommandRunner#runCommand(com.pixelsimple.commons.command.CommandRequest, com.pixelsimple.commons.command.CommandResponse)}.
 	 */
-	public void testAddArguments() {
-		CommandRequest request = CommandUtilForTest.simpleCommand();
-		Assert.assertEquals(request.getCommandAsString(), "ls -l");
+	public void testRunChainedCommandSuccess() {
+		BlockingCommandRunner runner = new BlockingCommandRunner();
+		CommandResponse response = new CommandResponse();
+		CommandRequest request = CommandUtilForTest.chainedCommand();
 		
-		request.addArgument("a");
-		Assert.assertEquals(request.getCommandAsString(), "ls -l a");
+		// TODO: This will block - how to test the blockage???
+		runner.runCommand(request, response);
 		
-		String spaceSepartedComment = "this has space";		
-		request.addArgument(spaceSepartedComment);
-		Assert.assertEquals(request.getCommandAsString(), "ls -l a this has space");
-
-		request = CommandUtilForTest.simpleCommand();
-		Assert.assertEquals(request.getCommandAsString(), "ls -l");
-		request.addArgument(null);
-		Assert.assertEquals(request.getCommandAsString(), "ls -l");
+		Assert.assertNotNull(response.getSuccessResponseOutputStream());
+		Assert.assertNull(response.getFailureResponse());
+		Assert.assertEquals(response.getCommandExitValueObtained(), request.getCommandExitValue());
+		Assert.assertEquals(response.hasCommandFailed(), Boolean.FALSE);
 		
-		request = CommandUtilForTest.simpleCommand();
-		request.addArgument("a");
-		spaceSepartedComment = "this has space";		
-		request.addArgument(spaceSepartedComment);
-		Assert.assertEquals(request.doesArgumentExist("a", false), true);
-		Assert.assertEquals(request.doesArgumentExist("A", true), true);
-		Assert.assertEquals(request.doesArgumentExist("A", false), false);
-		Assert.assertEquals(request.doesArgumentExist("this has SPACE", true), true);
-		Assert.assertEquals(request.doesArgumentExist("this", true), false);
+		// TODO: Add more meaningful assert - how to assert the output?
 	}
-
 
 	/**
 	 * Test method for {@link com.pixelsimple.commons.command.AbstractCommandRunner#runCommand(com.pixelsimple.commons.command.CommandRequest, com.pixelsimple.commons.command.CommandResponse)}.

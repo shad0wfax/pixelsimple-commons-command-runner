@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pixelsimple.commons.command.callback.AsyncCallbackHandler;
+import com.pixelsimple.commons.util.OSUtils;
 
 /**
  *
@@ -53,6 +54,9 @@ public class CommandUtilForTest extends TestCase {
 		CommandRequest request = new CommandRequest();
 		request.addCommand("ls", 0);
 		request.addArgument("-l");
+	
+//		request.addCommand("cmd", 0).addArgument("/c").addArgument("echo").addArgument("\"\"").addArgument(">").addArgument("Z:\\Downloads\\Nova\\hls_transcode.complete");
+
 		return request;
 	}
 	
@@ -68,4 +72,18 @@ public class CommandUtilForTest extends TestCase {
 	}
 	
 
+	public static CommandRequest chainedCommand() {
+		CommandRequest request = new CommandRequest();
+		request.addCommandToRunFromShell("ls", 0).addArgument("-l");
+		
+		if (OSUtils.isWindows()) {
+			request.addArgument("&");	
+		} else {
+			request.addArgument(";");	
+		}
+		request.addArgument("ps");
+
+		return request;
+	}
+	
 }
