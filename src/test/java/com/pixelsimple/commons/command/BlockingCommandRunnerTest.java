@@ -129,8 +129,4 @@ public class BlockingCommandRunnerTest extends TestCase {
 			Assert.assertTrue(true);
 		}
 	}
-	
-	///Users/srivatsasharma/dev/pixelsimple/ffprobe/32_bit/0.7_beta2/ffprobe "/Users/srivatsasharma/Projects/LyndaTraining/Videos/Dvd1/Android App Development with Java Essential Training/1. Getting Started/adt.mov" -show_format -show_streams -sexagesimal
-	
-	
 }
