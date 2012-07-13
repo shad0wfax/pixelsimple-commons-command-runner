@@ -29,10 +29,10 @@ public class CommandRunnerFactoryTest extends TestCase {
 	 * Test method for {@link com.pixelsimple.commons.command.CommandRunnerFactory#newAsyncCommandRunner(com.pixelsimple.commons.command.callback.AsyncCallbackHandler)}.
 	 */
 	public void testNewAsyncCommandRunner() {
-		CommandRunner runner = CommandRunnerFactory.newAsyncCommandRunner(null);
+		CommandRunner runner = CommandRunnerFactory.newAsyncCommandRunner(null, false);
 		Assert.assertNotNull(runner);
 		
-		runner = CommandRunnerFactory.newAsyncCommandRunner(CommandUtilForTest.anonAsyncHandler(null));
+		runner = CommandRunnerFactory.newAsyncCommandRunner(CommandUtilForTest.anonAsyncHandler(null), true);
 		Assert.assertNotNull(runner);
 	}
 	
